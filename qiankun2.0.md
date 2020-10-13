@@ -1,13 +1,48 @@
-#qiankun 乾坤2.0 vue项目配置
+# qiankun 乾坤2.0 vue项目配置
 
 **主应用配置**
 
----core
------microApp-register.ts
------microApp-config.ts
-
+- 目录和文件
+- core
+- microApp-register.ts
+- microApp-config.ts
 
 ```
+// =======================microApp-config.ts
+
+/**
+ * @author hevin
+ * @time  
+ * @name 无需服务端获取的微应用
+ */
+
+const noAuthApps = [
+  {
+    module: "subapp-login",
+    defaultRegister: true,
+    devEntry: "//localhost:2753",
+    depEntry: "http://login.mfe.wlui.com.cn/",
+    routerBase: "/login",
+    data: [
+      {
+        id: "1",
+        title: "login",
+        icon: "el-icon-monitor",
+        children: [
+          {
+            id: "1-1",
+            title: "home",
+            url: "/login"
+          }
+        ]
+      }
+    ]
+  },
+]
+
+export default noAuthApps;
+
+
 
   //  ===================microApp-register.ts
   import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start, initGlobalState } from "qiankun";
