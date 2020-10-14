@@ -308,3 +308,36 @@ export default microAppStart
 
 
 ```
+
+
+# 子应用配置
+
+- vue.config.ts
+```
+const { name,   } = require("./package");
+
+module.exports = {
+  // 自定义webpack配置
+  configureWebpack: {
+    resolve: {
+      alias: {
+        "@": resolve("src")
+      }
+    },
+    output: {
+      // 把子应用打包成 umd 库格式
+      library: `${name}-[name]`,
+      libraryTarget: "umd",
+      jsonpFunction: `webpackJsonp_${name}`
+    }
+  }
+ }
+
+```
+
+- package.json
+```
+{
+    "name": "subapp-blog",
+}
+```
